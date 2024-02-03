@@ -9,6 +9,10 @@ app.get("/", (req, res) => {
   res.send("Hello from server");
 });
 
+app.get("/twitter", (req, res) => {
+  res.send("Hello from twitter");
+});
+
 app.listen(port, () =>
   console.log(`Server is running at http://localhost:${port}`)
 );
