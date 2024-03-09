@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
+app.get("/", (req, res) => {
+  res.send("hello from simple server :)");
+});
 
 app.use("/api/auth", authRoutes);
 // app.use("/api/songs", songRoutes);
