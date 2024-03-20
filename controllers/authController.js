@@ -15,17 +15,20 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password)
+  const { identifier, password } = req.body; // Assuming 'identifier' can be either username or email
+  if (!identifier || !password)
+    // Check for missing fields
     return res.status(400).json({ msg: "Missing fields" });
 
   try {
-    const user = await User.findOne({ username }); // Find the user by username
+    const user = await User.findOne({
+      $or: [{ username: identifier }, { email: identifier }], // Check both username and email
+    });
     if (!user) {
       return res.status(400).json({ msg: "User not found" });
     }
 
-    // Compare provided password with hashed password stored in the database
+    // Compare password with hashed password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       return res.status(400).json({ msg: "Incorrect password" });
