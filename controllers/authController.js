@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const { generateToken } = require("../utils/jwtUtils");
 
 const register = async (req, res) => {
   const { email, username, password } = req.body;
@@ -34,7 +35,9 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Incorrect password" });
     }
 
-    res.status(200).json({ msg: "Successfully logged in" });
+    // If authentication is successful
+    const token = generateToken({ userId: user._id });
+    res.status(200).json({ token, msg: "Successfully logged in" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Internal server error" });
