@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authController");
+const { login, register, logout } = require("../controllers/authController");
 const { authenticateToken } = require("../middlewares/authMiddlewares");
 
-router.post("/register", authController.register);
-router.post("/login", authController.login);
+router.route("/register").post(register);
+router.route("/login").post(login);
+router.route("/logout").get(logout);
 
 // Example protected route
 router.get("/profile", authenticateToken, (req, res) => {
