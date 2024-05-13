@@ -3,6 +3,7 @@ require("dotenv").config({ path: "./config/.env" });
 const mongoDB = require("./config/mongoDbConnect.js");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
+const songRoutes = require("./routes/songRoutes.js");
 
 const app = express();
 const port = process.env.PORT || 4000;
