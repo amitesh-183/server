@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/songs", songRoutes);
+app.use("/api/songs", songRoutes);
 
 // MongoDB Connect
 

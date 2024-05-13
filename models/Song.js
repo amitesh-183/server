@@ -10,19 +10,27 @@ const songSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    genre: {
+    posterImage: {
       type: String,
       required: true,
     },
-    duration: {
-      type: Number,
+    coverImage: {
+      type: String,
+      required: true,
+    },
+    genre: {
+      type: String,
       required: true,
     },
     audioUrl: {
       type: String,
       required: true,
     },
-    // Additional fields as per your requirements
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

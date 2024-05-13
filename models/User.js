@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please Enter your password"],
     },
+    songs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Song",
+      },
+    ],
   },
   { timestamps: true }
 );
